@@ -29,4 +29,3 @@ RUN \
 
 RUN \
   mkdir -p $APP_PATH $ARTIFACT_PATH
-bd
