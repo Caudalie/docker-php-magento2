@@ -10,7 +10,10 @@ ENV MAGENTO_PROJECT_VERSION 2.3.0
 RUN \
   composer global config --auth http-basic.repo.magento.com $MAGENTO_PUB_KEY $MAGENTO_PRI_KEY \
   && composer create-project --repository-url=https://repo.magento.com/ $MAGENTO_PROJECT=$MAGENTO_PROJECT_VERSION $TMP_DECK \
-  && composer clear-cache \
+  && composer clear-cache
+
+RUN \
+  chown -R www-data:www-data $TMP_DECK \
   && tar -czf $ARTIFACT_PATH/$MAGENTO_ARTIFACT_NAME -C $TMP_DECK . \
   && rm -rf $TMP_DECK && mkdir -p $TMP_DECK
 

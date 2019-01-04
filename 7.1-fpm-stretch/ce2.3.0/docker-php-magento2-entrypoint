@@ -2,4 +2,9 @@
 
 echo "Entrypoint"
 
+WORKDIR_OWNER=$(ls -ld . | awk 'NR==1 {print $3}')
+
+tar --skip-old-files -xf $ARTIFACT_PATH/$MAGENTO_ARTIFACT_NAME -C $APP_PATH
+chown -R $WORKDIR_OWNER $APP_PATH
+
 exec "$@"
