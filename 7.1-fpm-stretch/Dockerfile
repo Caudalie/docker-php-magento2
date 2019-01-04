@@ -4,14 +4,6 @@ MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-ENV APP_PATH /app
-ENV ARTIFACT_PATH /root/artifact
-ENV COMPOSER_ALLOW_SUPERUSER 1
-ENV TMP_DECK /tmp/deck
-
-ENV MAGENTO_COMMUNITY_PROJECT magento/project-community-edition
-ENV MAGENTO_ENTERPRISE_PROJECT magento/project-enterprise-edition
-
 RUN apt-get update \
   && apt-get install -y \
     libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev \
@@ -34,7 +26,14 @@ RUN \
   curl -sLS -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
   && chmod +x /usr/local/bin/composer
 
+ENV APP_PATH /var/www/html
+ENV ARTIFACT_PATH /root/artifact
+ENV COMPOSER_ALLOW_SUPERUSER 1
+ENV MAGENTO_PUB_KEY 6c7c3956d991c6459bcbf6d0d977514f
+ENV MAGENTO_PRI_KEY 2319f30adac6169a5c30ad2cb564d177
+ENV MAGENTO_PROJECT magento/project-community-edition
+ENV TMP_DECK /tmp/deck
+
 RUN \
-  mkdir -p $APP_PATH $ARTIFACT_PATH $TMP_DECK \
-  && mkdir -p $ARTIFACT_PATH/$MAGENTO_COMMUNITY_PROJECT \
-  && mkdir -p $ARTIFACT_PATH/$MAGENTO_ENTERPRISE_PROJECT
+  rm -rf $APP_PATH $ARTIFACT_PATH $TMP_DECK \
+  && mkdir -p $APP_PATH $ARTIFACT_PATH $TMP_DECK
