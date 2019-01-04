@@ -37,3 +37,10 @@ ENV TMP_DECK /tmp/deck
 RUN \
   rm -rf $APP_PATH $ARTIFACT_PATH $TMP_DECK \
   && mkdir -p $APP_PATH $ARTIFACT_PATH $TMP_DECK
+
+COPY docker-php-magento2-entrypoint /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-php-magento2-*
+
+ENTRYPOINT ["docker-php-magento2-entrypoint"]
+EXPOSE 9000
+CMD ["php-fpm"]

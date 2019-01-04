@@ -13,3 +13,10 @@ RUN \
   && composer clear-cache \
   && tar -czf $ARTIFACT_PATH/$MAGENTO_ARTIFACT_NAME -C $TMP_DECK . \
   && rm -rf $TMP_DECK && mkdir -p $TMP_DECK
+
+COPY docker-php-magento2-entrypoint /usr/local/bin/
+RUN chmod +x /usr/local/bin/docker-php-magento2-*
+
+ENTRYPOINT ["docker-php-magento2-entrypoint"]
+EXPOSE 9000
+CMD ["php-fpm"]
