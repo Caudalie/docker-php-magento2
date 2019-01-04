@@ -28,6 +28,9 @@ RUN \
   docker-php-ext-install bcmath mcrypt mysqli intl opcache pdo_mysql soap xsl zip
 
 RUN \
+  echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
+
+RUN \
   curl -sLS -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
   && chmod +x /usr/local/bin/composer
 
