@@ -13,7 +13,8 @@ RUN \
   && composer clear-cache
 
 RUN \
-  chown -R www-data:www-data $TMP_DECK \
+  rm -rf $TMP_DECK/vendor \
+  && chown -R www-data:www-data $TMP_DECK \
   && tar -czf $ARTIFACT_PATH/$MAGENTO_ARTIFACT_NAME -C $TMP_DECK . \
   && rm -rf $TMP_DECK && mkdir -p $TMP_DECK
 
