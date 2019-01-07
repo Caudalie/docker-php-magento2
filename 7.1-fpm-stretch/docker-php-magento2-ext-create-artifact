@@ -10,7 +10,7 @@ VERSION=$2
 ARTIFACT_NAME=$3
 
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK
-composer create-project --repository-url=https://repo.magento.com/ $PROJECT=$VERSION $TMP_DECK
+composer create-project --no-progress --repository-url=https://repo.magento.com/ $PROJECT=$VERSION $TMP_DECK
 rm -rf $TMP_DECK/vendor
 
 chown -R www-data:www-data $TMP_DECK
