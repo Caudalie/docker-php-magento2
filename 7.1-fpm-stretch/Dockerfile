@@ -7,7 +7,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
   && apt-get install -y \
     libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev \
-    bash curl git mysql-client nano unzip zip \
+    bash curl git mysql-client nano python3-pip unzip zip \
     && apt-get clean \
     && apt-get autoclean \
     && apt-get autoremove
@@ -25,6 +25,9 @@ RUN \
 RUN \
   curl -sLS -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
   && chmod +x /usr/local/bin/composer
+
+RUN \
+  pip3 install awscli --upgrade
 
 ENV APP_PATH /var/www/html
 ENV ARTIFACT_PATH /root/artifact
