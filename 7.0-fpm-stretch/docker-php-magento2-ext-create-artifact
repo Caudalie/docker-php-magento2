@@ -1,0 +1,17 @@
+#!/bin/bash -e
+
+if [[ $# -ne 3 ]]; then
+  echo "Illegal number of parameters"
+  exit 1
+fi
+
+PROJECT=$1
+PROJECT_VERSION=$2
+ARTIFACT_NAME=$3
+
+rm -rf $TMP_DECK && mkdir -p $TMP_DECK
+
+docker-php-magento2-ext-create-project $PROJECT $PROJECT_VERSION $TMP_DECK
+
+tar -cpzf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
+rm -rf $TMP_DECK && mkdir -p $TMP_DECK

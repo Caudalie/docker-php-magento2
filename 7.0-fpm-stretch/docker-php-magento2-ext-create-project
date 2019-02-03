@@ -1,0 +1,16 @@
+#!/bin/bash -e
+
+if [[ $# -ne 3 ]]; then
+  echo "Illegal number of parameters"
+  exit 1
+fi
+
+PROJECT=$1
+PROJECT_VERSION=$2
+DEPLOY_PATH=$3
+
+composer create-project --no-progress --repository-url=https://repo.magento.com/ $PROJECT=$PROJECT_VERSION $DEPLOY_PATH
+rm -rf $DEPLOY_PATH/vendor
+
+chown -R www-data:www-data $DEPLOY_PATH
+docker-php-magento2-ext-fix-permissions $DEPLOY_PATH
