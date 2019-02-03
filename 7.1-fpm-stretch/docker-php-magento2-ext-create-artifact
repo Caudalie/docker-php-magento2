@@ -15,18 +15,5 @@ rm -rf $TMP_DECK/vendor
 
 chown -R www-data:www-data $TMP_DECK
 
-find $TMP_DECK -type f -exec chmod 644 {} \;
-find $TMP_DECK -type d -exec chmod 754 {} \;
-find $TMP_DECK/app/etc -type d -exec chmod 774 {} \;
-find $TMP_DECK/app/etc -type f -exec chmod 664 {} \;
-find $TMP_DECK/generated -type d -exec chmod 774 {} \;
-find $TMP_DECK/generated -type f -exec chmod 664 {} \;
-find $TMP_DECK/pub/media -type d -exec chmod 774 {} \;
-find $TMP_DECK/pub/media -type f -exec chmod 664 {} \;
-find $TMP_DECK/pub/static -type d -exec chmod 774 {} \;
-find $TMP_DECK/pub/static -type f -exec chmod 664 {} \;
-find $TMP_DECK/var -type d -exec chmod 774 {} \;
-find $TMP_DECK/var -type f -exec chmod 664 {} \;
-
 tar -czf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK
