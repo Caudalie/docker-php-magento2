@@ -18,9 +18,11 @@ chown -R www-data:www-data $TMP_DECK
 find $TMP_DECK -type f -exec chmod 640 {} \;
 find $TMP_DECK -type d -exec chmod 750 {} \;
 find $TMP_DECK/generated -type d -exec chmod 770 {} \;
+find $TMP_DECK/generated -type f -exec chmod 660 {} \;
 find $TMP_DECK/pub/media -type d -exec chmod 770 {} \;
 find $TMP_DECK/pub/static -type d -exec chmod 770 {} \;
 find $TMP_DECK/var -type d -exec chmod 770 {} \;
+find $TMP_DECK/var -type f -exec chmod 660 {} \;
 
 tar -czf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK
