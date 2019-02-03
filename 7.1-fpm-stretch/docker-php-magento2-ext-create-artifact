@@ -17,10 +17,14 @@ chown -R www-data:www-data $TMP_DECK
 
 find $TMP_DECK -type f -exec chmod 640 {} \;
 find $TMP_DECK -type d -exec chmod 750 {} \;
+find $TMP_DECK/app/etc -type d -exec chmod 770 {} \;
+find $TMP_DECK/app/etc -type f -exec chmod 660 {} \;
 find $TMP_DECK/generated -type d -exec chmod 770 {} \;
 find $TMP_DECK/generated -type f -exec chmod 660 {} \;
 find $TMP_DECK/pub/media -type d -exec chmod 770 {} \;
+find $TMP_DECK/pub/media -type f -exec chmod 660 {} \;
 find $TMP_DECK/pub/static -type d -exec chmod 770 {} \;
+find $TMP_DECK/pub/static -type f -exec chmod 660 {} \;
 find $TMP_DECK/var -type d -exec chmod 770 {} \;
 find $TMP_DECK/var -type f -exec chmod 660 {} \;
 
