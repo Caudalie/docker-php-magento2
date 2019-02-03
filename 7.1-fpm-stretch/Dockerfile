@@ -46,6 +46,8 @@ RUN \
 COPY docker-php-magento2-entrypoint docker-php-magento2-ext-* /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-php-magento2-*
 
+RUN composer global config --auth http-basic.repo.magento.com $MAGENTO_PUB_KEY $MAGENTO_PRI_KEY
+
 ENTRYPOINT ["docker-php-magento2-entrypoint"]
 EXPOSE 9000
 CMD ["php-fpm"]

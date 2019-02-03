@@ -6,16 +6,12 @@ if [[ $# -ne 3 ]]; then
 fi
 
 PROJECT=$1
-VERSION=$2
+PROJECT_VERSION=$2
 ARTIFACT_NAME=$3
 
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK
-composer create-project --no-progress --repository-url=https://repo.magento.com/ $PROJECT=$VERSION $TMP_DECK
-rm -rf $TMP_DECK/vendor
 
-chown -R www-data:www-data $TMP_DECK
-
-docker-php-magento2-ext-fix-permissions $TMP_DECK
+docker-php-magento2-ext-create-project $PROJECT $PROJECT_VERSION $TMP_DECK
 
 tar -cpzf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK

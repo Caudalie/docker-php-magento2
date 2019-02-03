@@ -8,8 +8,7 @@ ENV MAGENTO_ARTIFACT_NAME m2-ce230.tar.gz
 ENV MAGENTO_PROJECT_VERSION 2.3.0
 
 RUN \
-  composer global config --auth http-basic.repo.magento.com $MAGENTO_PUB_KEY $MAGENTO_PRI_KEY \
-  && docker-php-magento2-ext-create-artifact $MAGENTO_PROJECT $MAGENTO_PROJECT_VERSION $MAGENTO_ARTIFACT_NAME
+  docker-php-magento2-ext-create-artifact $MAGENTO_PROJECT $MAGENTO_PROJECT_VERSION $MAGENTO_ARTIFACT_NAME
 
 COPY docker-php-magento2-entrypoint /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-php-magento2-*
