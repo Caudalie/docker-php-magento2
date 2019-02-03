@@ -17,5 +17,5 @@ chown -R www-data:www-data $TMP_DECK
 
 docker-php-magento2-ext-fix-permissions $TMP_DECK
 
-tar -czf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
+tar -cpzf $ARTIFACT_PATH/$ARTIFACT_NAME -C $TMP_DECK .
 rm -rf $TMP_DECK && mkdir -p $TMP_DECK
