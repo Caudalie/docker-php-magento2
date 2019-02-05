@@ -17,7 +17,7 @@ RUN \
   && docker-php-ext-install gd
 
 RUN \
-  docker-php-ext-install bcmath mcrypt mysqli intl opcache pcntl pdo_mysql soap xsl zip
+  docker-php-ext-install bcmath mcrypt mysqli intl opcache pcntl pdo_mysql soap sockets xsl zip
 
 RUN \
   echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
