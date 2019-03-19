@@ -13,6 +13,9 @@ RUN apt-get update \
     && apt-get autoremove
 
 RUN \
+  pecl install xdebug
+
+RUN \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
   && docker-php-ext-install gd
 
