@@ -1,4 +1,4 @@
-FROM php:7.1-fpm-buster
+FROM php:7.2-fpm-stretch
 
 MAINTAINER "Jeremy CURNY" <jeremy.curny.pro@gmail.com>
 
@@ -7,20 +7,23 @@ ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update \
   && apt-get install -y \
     libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev \
-    ack-grep bash curl git jq default-mysql-client nano python3-pip unzip zip \
+    ack-grep bash curl git jq mysql-client nano python3-pip unzip zip \
     && apt-get clean \
     && apt-get autoclean \
     && apt-get autoremove
 
 RUN \
-  pecl install xdebug
+  pecl install mcrypt xdebug
 
 RUN \
   docker-php-ext-configure gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/ --with-png-dir=/usr/include/ \
   && docker-php-ext-install gd
 
 RUN \
-  docker-php-ext-install bcmath mcrypt mysqli intl opcache pcntl pdo_mysql soap sockets xsl zip
+  docker-php-ext-enable mcrypt
+
+RUN \
+  docker-php-ext-install bcmath mysqli intl opcache pcntl pdo_mysql soap sockets xsl zip
 
 RUN \
   echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
