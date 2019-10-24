@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install -y \
-    libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libsodium-dev libxml2-dev libxslt-dev \
+    libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev \
     ack-grep bash curl git jq mysql-client nano python3-pip unzip zip \
     && apt-get clean \
     && apt-get autoclean \
@@ -24,6 +24,15 @@ RUN \
 
 RUN \
   docker-php-ext-install bcmath mysqli intl opcache pcntl pdo_mysql soap sockets xsl zip
+
+RUN \
+  curl -o libsodium.tar.gz https://download.libsodium.org/libsodium/releases/libsodium-1.0.18.tar.gz \
+    && tar xfvz libsodium.tar.gz \
+    && rm libsodium.tar.gz \
+    && cd libsodium-1.0.18 \
+    && ./configure \
+    && make && make install \
+    && pecl install -f libsodium
 
 RUN \
   echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
