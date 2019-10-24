@@ -6,7 +6,7 @@ ARG DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update \
   && apt-get install -y \
-    libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libxml2-dev libxslt-dev \
+    libfreetype6-dev libicu-dev libjpeg62-turbo-dev libmcrypt-dev libpng-dev libsodium-dev libxml2-dev libxslt-dev \
     ack-grep bash curl git jq mysql-client nano python3-pip unzip zip \
     && apt-get clean \
     && apt-get autoclean \
