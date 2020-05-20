@@ -38,7 +38,7 @@ RUN \
   echo "memory_limit = 1024M" > /usr/local/etc/php/conf.d/memory-limit.ini
 
 RUN \
-  curl -sLS -o /usr/local/bin/composer https://getcomposer.org/composer.phar \
+  curl -sL -o /usr/local/bin/composer https://getcomposer.org/download/1.10.1/composer.phar \
   && chmod +x /usr/local/bin/composer
 
 RUN \
